@@ -57,10 +57,19 @@ button:hover {
 
 #tablero {
     display: grid;
-    grid-template-columns: repeat(10, 25px);
-    grid-template-rows: repeat(20, 25px);
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(20, 30px);
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#tableroProximaPieza {
+    display: grid;
+    grid-template-columns: repeat(4, 25px);
+    grid-template-rows: repeat(4, 25px);
+    background-color: #d0e0ff;
+    border-radius: 5px;
+    
 }
 
 #panel_izq,
@@ -73,68 +82,76 @@ button:hover {
     width: 100%;
 }
 
-.celda {
-    width: 25px;
-    height: 25px;
-    background-color: #e4ecff;
-    border: 1px solid #a6c4ff;
-}
-
-#cuadroIzq {
+#cuadroIzq,
+#cuadroDer {
     margin: 10px;
     height: 450px;
     width: 300px;
     background-color: #a6c4ff;
     border: 1px solid #002775;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+}
+
+#relleno{
+    height: 37.6px;
+}
+
+#instrucciones{
+    text-align: left;
+}
+
+
+.celda {
+    width: 30px;
+    height: 30px;
+    background-color: #e4ecff;
+    border: 1px solid #a6c4ff;
 }
 
 /* // COLORES PARA LAS PIEZAS */
 
 .cyan {
     background-color: cyan;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 
 .azul {
     background-color: blue;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 
 .naranja {
     background-color: orange;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 
 .amarillo {
     background-color: yellow;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 
 .verde {
     background-color: green;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 
 .morado {
     background-color: purple;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }
 
 .rojo {
     background-color: red;
-    box-shadow: 
-        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.2),
         inset 2px 2px 2px rgba(255, 255, 255, 0.5);
 }

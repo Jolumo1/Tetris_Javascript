@@ -99,6 +99,58 @@ function posicionarPieza(pieza) {
     }
 }
 
+
+//////////////////////////////////////////////
+
+let intervaloCaida; // Para almacenar el intervalo de caída
+
+function moverPiezaAbajo(pieza) {
+    const filas = 20;
+    const columnas = 10;
+
+    // Comprobar si la pieza llega al fondo o choca con otras piezas
+    for (let i = 0; i < pieza.forma.length; i++) {
+        for (let j = 0; j < pieza.forma[i].length; j++) {
+            if (pieza.forma[i][j] === 1) { // Si hay parte de la pieza aquí
+                const nuevaFila = pieza.fila + i + 1; // Mover la pieza una fila abajo
+                const nuevaColumna = pieza.columna + j;
+
+                // Verificar si la pieza está fuera de los límites o colisiona con una celda ocupada
+                if (nuevaFila >= filas || document.querySelector(`#tablero .x-${nuevaFila}.y-${nuevaColumna}`).classList.length > 1) {
+                    fijarPieza(pieza); // Fijar la pieza en su lugar
+                    generarPiezaAleatoria(); // Generar nueva pieza
+                    return;
+                }
+
+                // Si no hay colisión, mover la pieza hacia abajo
+                const celda = document.querySelector(`#tablero .x-${pieza.fila + i}.y-${pieza.columna + j}`);
+                celda.classList.remove(pieza.color);
+                const nuevaCelda = document.querySelector(`#tablero .x-${nuevaFila}.y-${nuevaColumna}`);
+                nuevaCelda.classList.add(pieza.color);
+            }
+        }
+    }
+
+    // Actualizar la fila de la pieza
+    pieza.fila += 1;
+}
+
+
+
+
+// Iniciar el movimiento de la pieza hacia abajo
+function iniciarCaida(pieza) {
+    intervaloCaida = setInterval(() => {
+        moverPiezaAbajo(pieza); // Mover la pieza cada segundo
+    }, 1000);
+}
+
+
+
+
+
+//////////////////////////////////////////////////
+
 function generarTablero(filas, columnas) {
     const tablero = document.getElementById("tablero");
 
@@ -114,10 +166,8 @@ function generarTablero(filas, columnas) {
     }
 }
 
-let filas = 20;
-let columnas = 10;
-generarTablero(filas, columnas);
 
-
+generarTablero(20, 10);
 let pieza = generarPiezaAleatoria();
 posicionarPieza(pieza);
+iniciarCaida(pieza);
