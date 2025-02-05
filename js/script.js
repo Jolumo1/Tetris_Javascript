@@ -1,6 +1,7 @@
 const piezas = {
     I: {
-        nombre: "I",
+        fila: 0,
+        columna: 3,
         forma: [
             [0, 0, 0, 0],
             [1, 1, 1, 1],
@@ -11,7 +12,8 @@ const piezas = {
     },
 
     J: {
-        nombre: "J",
+        fila: 0,
+        columna: 3,
         forma: [
             [1, 0, 0],
             [1, 1, 1],
@@ -21,7 +23,8 @@ const piezas = {
     },
 
     L: {
-        nombre: "L",
+        fila: 0,
+        columna: 3,
         forma: [
             [0, 0, 1],
             [1, 1, 1],
@@ -31,7 +34,8 @@ const piezas = {
     },
 
     O: {
-        nombre: "O",
+        fila: 0,
+        columna: 3,
         forma: [
             [1, 1],
             [1, 1],
@@ -40,7 +44,8 @@ const piezas = {
     },
 
     S: {
-        nombre: "S",
+        fila: 0,
+        columna: 3,
         forma: [
             [0, 1, 1],
             [1, 1, 0],
@@ -50,7 +55,8 @@ const piezas = {
     },
 
     T: {
-        nombre: "T",
+        fila: 0,
+        columna: 3,
         forma: [
             [0, 1, 0],
             [1, 1, 1],
@@ -60,7 +66,8 @@ const piezas = {
     },
 
     Z: {
-        nombre: "Z",
+        fila: 0,
+        columna: 3,
         forma: [
             [1, 1, 0],
             [0, 1, 1],
@@ -70,86 +77,13 @@ const piezas = {
     },
 };
 
-// 
+//
 
 function generarPiezaAleatoria() {
     let numAleatorio = Math.floor(Math.random() * 7);
     let piezaAleatoria = Object.values(piezas)[numAleatorio];
     return piezaAleatoria;
 }
-
-
-function posicionarPieza(pieza) {
-    const columnas = 10;
-    const filas = 20;
-
-    let fila = 0;
-    // let columna = 3;
-    let columna = Math.floor(columnas / 2) - Math.floor(pieza.forma[0].length / 2); 
-    
-    // Recorrer la forma de la pieza y colocarla en el tablero
-    for (let i = 0; i < pieza.forma.length; i++) {
-        for (let j = 0; j < pieza.forma[i].length; j++) {
-            if (pieza.forma[i][j] === 1) { 
-                // Busca la celda con ese valor x e y y le añade la clase del color de la pieza
-                const celda = document.querySelector(`#tablero .x-${fila + i}.y-${columna + j}`);
-                celda.classList.add(pieza.color); 
-            }
-        }
-    }
-}
-
-
-//////////////////////////////////////////////
-
-let intervaloCaida; // Para almacenar el intervalo de caída
-
-function moverPiezaAbajo(pieza) {
-    const filas = 20;
-    const columnas = 10;
-
-    // Comprobar si la pieza llega al fondo o choca con otras piezas
-    for (let i = 0; i < pieza.forma.length; i++) {
-        for (let j = 0; j < pieza.forma[i].length; j++) {
-            if (pieza.forma[i][j] === 1) { // Si hay parte de la pieza aquí
-                const nuevaFila = pieza.fila + i + 1; // Mover la pieza una fila abajo
-                const nuevaColumna = pieza.columna + j;
-
-                // Verificar si la pieza está fuera de los límites o colisiona con una celda ocupada
-                if (nuevaFila >= filas || document.querySelector(`#tablero .x-${nuevaFila}.y-${nuevaColumna}`).classList.length > 1) {
-                    fijarPieza(pieza); // Fijar la pieza en su lugar
-                    generarPiezaAleatoria(); // Generar nueva pieza
-                    return;
-                }
-
-                // Si no hay colisión, mover la pieza hacia abajo
-                const celda = document.querySelector(`#tablero .x-${pieza.fila + i}.y-${pieza.columna + j}`);
-                celda.classList.remove(pieza.color);
-                const nuevaCelda = document.querySelector(`#tablero .x-${nuevaFila}.y-${nuevaColumna}`);
-                nuevaCelda.classList.add(pieza.color);
-            }
-        }
-    }
-
-    // Actualizar la fila de la pieza
-    pieza.fila += 1;
-}
-
-
-
-
-// Iniciar el movimiento de la pieza hacia abajo
-function iniciarCaida(pieza) {
-    intervaloCaida = setInterval(() => {
-        moverPiezaAbajo(pieza); // Mover la pieza cada segundo
-    }, 1000);
-}
-
-
-
-
-
-//////////////////////////////////////////////////
 
 function generarTablero(filas, columnas) {
     const tablero = document.getElementById("tablero");
@@ -166,8 +100,84 @@ function generarTablero(filas, columnas) {
     }
 }
 
+/////////////////////////////////////////////////////////////////////////
 
-generarTablero(20, 10);
+function pintarPieza(pieza) {
+
+    for (let i = 0; i < pieza.forma.length; i++) {
+        for (let j = 0; j < pieza.forma[i].length; j++) {
+            if (pieza.forma[i][j] === 1) {
+                const fila = pieza.fila + i;
+                const columna = pieza.columna + j;
+                const celda = document.querySelector(`.x-${fila}.y-${columna}`);
+                celda.classList.add(pieza.color);
+                celda.classList.add("ocupada");
+            }
+        }
+    }
+}
+
+function borrarPieza(pieza) {
+    for (let i = 0; i < pieza.forma.length; i++) {
+        for (let j = 0; j < pieza.forma[i].length; j++) {
+            if (pieza.forma[i][j] === 1) {
+                const fila = pieza.fila + i;
+                const columna = pieza.columna + j;
+                const celda = document.querySelector(`.x-${fila}.y-${columna}`);
+                celda.classList.remove(pieza.color);
+                celda.classList.remove("ocupada");
+            }
+        }
+    }
+}
+
+function bajarPieza() {
+    
+    if (puedeBajar(pieza)) {
+        borrarPieza(pieza);
+        pieza.fila += 1;  
+        pintarPieza(pieza);
+    } else {
+        clearInterval(intervaloBajarPieza);
+        
+    }
+}
+
+function puedeBajar(pieza) {
+    const altura = pieza.forma.length;
+    const ancho = pieza.forma[0].length;
+
+    for (let j = 0; j < ancho; j++) { // Recorremos columnas
+        for (let i = altura - 1; i >= 0; i--) { // De abajo hacia arriba en cada columna
+            if (pieza.forma[i][j] === 1) {
+                const filaSiguiente = pieza.fila + i + 1;
+                const columna = pieza.columna + j;
+
+                if (filaSiguiente >= filas) {
+                    return false;
+                }
+
+                const celdaAbajo = document.querySelector(`.x-${filaSiguiente}.y-${columna}`);
+                if (celdaAbajo && celdaAbajo.classList.contains("ocupada")) {
+                    return false;
+                }
+
+                break;
+            }
+        }
+    }
+    return true;
+}
+
+
+//////////////////////////////
+
+let filas = 20;
+let columnas = 10;
+generarTablero(filas, columnas);
+
 let pieza = generarPiezaAleatoria();
-posicionarPieza(pieza);
-iniciarCaida(pieza);
+pintarPieza(pieza);
+
+intervaloBajarPieza = setInterval(bajarPieza, 500);
+
