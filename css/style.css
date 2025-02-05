@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
+* {
+    font-family: "Pixelify Sans", serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #a6c4ff;
+    width: 80%;
+    margin: 0 auto;
+}
+
+button {
+    margin: 5px;
+    padding: 5px;
+    background-color: #4a86ff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+button:hover {
+    background-color: #2d62cc;
+    color: #e4ecff;
+}
+
+.tituloPrincipal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloPrincipal h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #002775;
+    margin: 15px;
+}
+
+.tituloPrincipal img {
+    width: 50px;
+    height: 50px;
+}
+
+#juego {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(10, 25px);
+    grid-template-rows: repeat(20, 25px);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#panel_izq,
+#panel_der {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #d0e0ff;
+    width: 100%;
+}
+
+.celda {
+    width: 25px;
+    height: 25px;
+    background-color: #e4ecff;
+    border: 1px solid #a6c4ff;
+}
+
+#cuadroIzq {
+    margin: 10px;
+    height: 450px;
+    width: 300px;
+    background-color: #a6c4ff;
+    border: 1px solid #002775;
+}
+
+/* // COLORES PARA LAS PIEZAS */
+
+.cyan {
+    background-color: cyan;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.azul {
+    background-color: blue;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.naranja {
+    background-color: orange;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.amarillo {
+    background-color: yellow;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.verde {
+    background-color: green;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.morado {
+    background-color: purple;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.rojo {
+    background-color: red;
+    box-shadow: 
+        inset -2px -2px 2px rgba(0, 0, 0, 0.2), 
+        inset 2px 2px 2px rgba(255, 255, 255, 0.5);
+}
