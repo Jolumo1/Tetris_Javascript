@@ -65,10 +65,15 @@ button:hover {
 
 #tableroProximaPieza {
     display: grid;
-    grid-template-columns: repeat(4, 25px);
+    grid-template-columns: repeat(5, 25px);
     grid-template-rows: repeat(4, 25px);
-    background-color: #d0e0ff;
-    border-radius: 5px;
+   
+}
+
+
+#tableroProximaPieza .celda {
+    width: 25px;
+    height: 25px;
     
 }
 
@@ -96,12 +101,24 @@ button:hover {
 
 }
 
+#cuadroIzq h4{
+    margin: 8px;
+}
+
+#cuadroIzq p, ul{
+    margin: 8px;
+}
+
 #relleno{
     height: 37.6px;
 }
 
 #instrucciones{
+    margin-top: 0PX;
     text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
 
 

@@ -1,64 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tetris en JS</title>
-        <link
-            rel="shortcut icon"
-            href="./img/tetrisIco1.png"
-            type="image/x-icon"
-        />
-        <link rel="stylesheet" href="./css/style.css" />
-    </head>
-    <body>
-        <div class="tituloPrincipal">
-            <img src="./img/juego.png" alt="icono tetris" />
-            <h1>EL TETRIS DEFINITIVO</h1>
-            <img src="./img/tetrisIco1.png" alt="icono tetris" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetris en JS</title>
+    <link rel="shortcut icon" href="./img/tetrisIco1.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="tituloPrincipal">
+      <img src="./img/juego.png" alt="icono tetris" />
+      <h1>EL TETRIS DEFINITIVO</h1>
+      <img src="./img/tetrisIco1.png" alt="icono tetris" />
+    </div>
+
+    <div id="juego">
+      <div id="panel_izq">
+        <div id="cuadroIzq">
+          <h4>Instrucciones:</h4>
+          <div id="instrucciones">
+            <p>Mover la pieza: Flechas</p>
+            <p>Rotar la pieza: Espacio</p>
+            <p>Pausar el juego: P</p>
+            <p>Reiniciar el juego: R</p>
+
+            <p>Puntuación:</p>
+            <ul>
+              <li>1 línea: 40 puntos base</li>
+              <li>2 líneas: 100 puntos base</li>
+              <li>3 líneas: 300 puntos base</li>
+              <li>4 líneas (Tetris): 1200 puntos base</li>
+              <li>Los puntos se multiplican por el nivel</li>
+            </ul>
+            <p>Se aumenta un nivel por cada 10 líneas hechas.</p>
+            <p>
+              Cada vez que subes de nivel, la velocidad de caída de las piezas
+              aumenta.
+            </p>
+          </div>
+        </div>
+        <div>
+          <button id="btnPausa">Pausa</button>
+          <button id="btnReiniciar">Reiniciar</button>
+        </div>
+      </div>
+
+      <div id="tablero"></div>
+
+      <div id="panel_der">
+        <div id="cuadroDer">
+          <h4>Próxima pieza:</h4>
+          <div id="tableroProximaPieza"></div>
+          <div id="nivel">
+            <h4>Nivel:</h4>
+            <p id="nivelActual">1</p>
+          </div>
+          <div id="puntuacion">
+            <h4>Puntuación:</h4>
+            <p id="puntos">0</p>
+          </div>
+          <div id="lineas">
+            <h4>Lineas:</h4>
+            <p id="lineasHechas">0</p>
+          </div>
         </div>
 
-        <div id="juego">
-            <div id="panel_izq">
-                <div id="cuadroIzq">
-                    <h4>Instrucciones:</h4>
-                    <div id="instrucciones">
-                        <p>Mover la pieza: Flechas </p>
-                        <p>Rotar la pieza: Espacio</p>
-                        <p>Pausar el juego: P</p>
-                        <p>Reiniciar el juego: R</p>
-                    </div>
-                </div>
-                <div>
-                    <button id="btnInicio">Inicio</button>
-                    <button id="btnOtro">Reiniciar</button>
-                </div>
-            </div>
+        <div id="relleno"></div>
+      </div>
+    </div>
 
-            <div id="tablero"></div>
-
-            <div id="panel_der">
-                <div id="cuadroDer">
-                    <h4>Próxima pieza:</h4>
-                    <div id="tableroProximaPieza"></div>
-                    <div id="nivel">
-                        <h4>Nivel:</h4>
-                        <p id="nivelActual">1</p>
-                    </div>
-                    <div id="puntuacion">
-                        <h4>Puntuación:</h4>
-                        <p id="puntos">0</p>
-                    </div>
-                    <div id="lineas">
-                        <h4>Lineas:</h4>
-                        <p id="lineasHechas">0</p>
-                    </div>
-                </div>
-
-                <div id="relleno"></div>
-            </div>
-        </div>
-
-        <script src="./js/script.js"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/script.js"></script>
+  </body>
 </html>
