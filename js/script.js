@@ -78,7 +78,6 @@ const piezas = {
   },
 };
 
-
 function clonarPieza(pieza) {
   // para mostrar la próxima pieza en el html clonamos la pieza con todas sus propiedades.
   const nuevaPieza = {
@@ -121,14 +120,12 @@ function generarTablero(filas, columnas) {
   }
 }
 
-
 function generarTableroProximaPieza() {
   // genera las casillas para mostrar la próxima pieza en el html.
   const tableroProximaPieza = document.getElementById("tableroProximaPieza");
-  
+
   tableroProximaPieza.innerHTML = "";
 
-  
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 5; j++) {
       const celda = document.createElement("div");
@@ -142,15 +139,17 @@ function generarTableroProximaPieza() {
 
 function pintarProximaPieza(pieza) {
   // pinta la próxima pieza en el html mas o menos centrada, se puede controlar donde empieza a pintar la pieza.
-  const offsetFila = 1;  
-  const offsetColumna = 1; 
+  const offsetFila = 1;
+  const offsetColumna = 1;
 
   for (let i = 0; i < pieza.forma.length; i++) {
     for (let j = 0; j < pieza.forma[i].length; j++) {
       if (pieza.forma[i][j] === 1) {
         const fila = offsetFila + i;
         const columna = offsetColumna + j;
-        const celda = document.querySelector(`.proxima-x-${fila}.proxima-y-${columna}`);
+        const celda = document.querySelector(
+          `.proxima-x-${fila}.proxima-y-${columna}`
+        );
         if (celda) {
           celda.classList.add(pieza.color);
         }
@@ -158,7 +157,6 @@ function pintarProximaPieza(pieza) {
     }
   }
 }
-
 
 function limpiarTableroProximaPieza() {
   // limpia la próxima pieza para que no se superponga con la siguiente quitando las clases de colores.
@@ -219,7 +217,6 @@ function bajarPieza() {
     pieza.fila += 1;
     pintarPieza(pieza);
   } else {
-
     clearInterval(intervaloBajarPieza);
     pieza = proximaPieza;
 
@@ -233,14 +230,17 @@ function bajarPieza() {
     limpiarTableroProximaPieza();
     pintarProximaPieza(proximaPieza);
 
-    
     // reinicia la pieza en la fila superior
     pieza.fila = 0;
     pieza.columna = 3;
 
     // verifica si la posición inicial ya está ocupada y muestra un sweet alert con el mensaje de game over.
     if (!puedeBajar(pieza)) {
-      //alert("¡Game Over!");
+      //alert("Game Over!");
+
+      musicaFondo.pause();
+      sonidoFinal.play();
+
 
       Swal.fire({
         title: "Game over!",
@@ -287,13 +287,10 @@ function puedeBajar(pieza) {
 }
 
 function moverPieza(direccion) {
-
   if (puedeMover(pieza, direccion)) {
     borrarPieza(pieza);
     pieza.columna += direccion;
     pintarPieza(pieza);
-  } else {
-    console.log("Movimiento bloqueado");
   }
 }
 
@@ -331,7 +328,6 @@ function puedeMover(pieza, direccion) {
 }
 
 function rotarPieza() {
-
   let nuevaForma = [];
   for (let j = 0; j < pieza.forma[0].length; j++) {
     nuevaForma[j] = [];
@@ -347,16 +343,14 @@ function rotarPieza() {
       formaOriginal[i][j] = pieza.forma[i][j];
     }
   }
- // borra la pieza y la pinta en la nueva posición si puede rotar.
-   borrarPieza(pieza);
+  // borra la pieza y la pinta en la nueva posición si puede rotar.
+  borrarPieza(pieza);
 
   pieza.forma = nuevaForma;
 
   if (puedeRotar(pieza)) {
-    console.log("Rotación permitida");
     pintarPieza(pieza);
   } else {
-    console.log("Rotación bloqueada");
     pieza.forma = formaOriginal;
     pintarPieza(pieza);
   }
@@ -468,7 +462,6 @@ function bajarFilasSuperiores(filaEliminada) {
 
 // Actualiza puntuación
 function actualizarPuntuacion(lineasEliminadas) {
-
   lineasHechas += lineasEliminadas;
   document.getElementById("lineasHechas").textContent = lineasHechas;
 
@@ -512,9 +505,24 @@ function subirNivel() {
   intervaloBajarPieza = setInterval(bajarPieza, velocidadActual);
 }
 
+function controlarMusica(audio) {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+
+
 //////////////////////////////
 //// Inicio del juego //////////
 //////////////////////////////
+
+const musicaFondo = new Audio("./audio/tetris.mp3");
+musicaFondo.loop = true;
+const sonidoFinal = new Audio("./audio/gameOver.mp3");
+
+
 
 
 let filas = 20;
@@ -538,7 +546,6 @@ pintarProximaPieza(proximaPieza);
 let intervaloBajarPieza = setInterval(bajarPieza, velocidadActual);
 
 document.addEventListener("keydown", (event) => {
-
   switch (event.key) {
     case "ArrowLeft":
       moverPieza(-1);
@@ -562,6 +569,9 @@ document.addEventListener("keydown", (event) => {
       break;
     case "r":
       location.reload();
+      break;
+    case "m":
+      controlarMusica(musicaFondo);
       break;
   }
 });
