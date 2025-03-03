@@ -1,4 +1,4 @@
-# Tetris Js - Jlm
+# Tetris JS - Jlm
 
 **Tetris Game** is a classic falling block puzzle game implemented using HTML, CSS, and JavaScript. Players must rotate and arrange the falling tetrominoes (the pieces) to complete horizontal lines, which will then disappear, increasing the score. The game progressively increases in speed, making it more challenging as you advance.
 
