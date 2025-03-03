@@ -46,7 +46,6 @@ https://jolumo1.github.io/Tetris_Javascript/
 
 ## Installation:
 - Clone or download the repository to your local machine, then open the index.html file in your web browser to start playing.
-- Open `index.html` in a web browser to start playing.
 - Use the Github Pages version: https://jolumo1.github.io/Tetris_Javascript/
 
 
